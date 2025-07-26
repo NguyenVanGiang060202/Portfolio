@@ -1,15 +1,6 @@
 "use client"
 import Link from 'next/link'
 import React from 'react'
-import { Button } from "@/components/ui/button"
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuGroup,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { useState } from 'react'
 import { Mona_Sans } from 'next/font/google'
 import { motion } from 'framer-motion'

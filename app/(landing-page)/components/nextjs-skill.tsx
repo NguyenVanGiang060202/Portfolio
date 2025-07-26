@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Mona_Sans } from 'next/font/google'
 import { motion, MotionValue, useTransform } from 'framer-motion'
-import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { Pagination, PaginationContent, PaginationItem} from '@/components/ui/pagination';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';

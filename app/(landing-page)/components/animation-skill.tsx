@@ -7,7 +7,7 @@ const monaSans = Mona_Sans({
     weight: "700",
 });
 
-export default function animation({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
+export default function AnimationSkill({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
     const y = useTransform(scrollYProgress, [0.6, 0.8], ["0", "100%"]);
     return (
         <div className='relative w-dvw h-dvh justify-center items-center flex bg-indigo-700'>

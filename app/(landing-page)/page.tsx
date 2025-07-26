@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 import { Mona_Sans } from 'next/font/google'
 import { ArrowBigDownDashIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -18,7 +17,7 @@ export default function page() {
         <div className='w-full h-full max-w-screen min-h-dvh flex justify-center items-center bg-slate-50 flex-col '>
             <div className="w-full h-full max-w-screen min-h-dvh flex justify-center items-center bg-slate-50">
                 <div className="relative w-[50vw] h-screen justify-center items-center flex bg-orange-50 p-30 text-balance flex-col ">
-                    <h1 className={`text-8xl font-bold ${monaSans.className}`}>Hello, I'm a software engineer</h1>
+                    <h1 className={`text-8xl font-bold ${monaSans.className}`}>Hello, I{`&apos;`}m a software engineer</h1>
                     <Link href="#about" className='absolute bottom-10'>
                         <Button className={` animate-bounce text-xl font-bold flex items-center gap-2 rounded-full p-2 px-4 bg-indigo-700 text-orange-50 ${monaSans.className}`}>
                             <ArrowBigDownDashIcon />

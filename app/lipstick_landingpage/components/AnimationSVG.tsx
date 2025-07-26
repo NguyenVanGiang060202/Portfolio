@@ -1,12 +1,12 @@
 "use client";
 
 import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 
 export default function PaintBrushMaskImage() {
   const controls = useAnimation();
 
-  const startAnimation = async () => {
+  const startAnimation = useCallback(async () => {
     await controls.start({ width: 0, transition: { duration: 0 } });
     await controls.start({
       width: 800,
@@ -17,11 +17,11 @@ export default function PaintBrushMaskImage() {
         times: [0, 0.2, 0.5, 0.8, 1],
       },
     });
-  };
+  }, [controls]);
 
   useEffect(() => {
     startAnimation();
-  }, []);
+  }, [startAnimation]);
 
   return (
     <div

@@ -1,11 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Mona_Sans } from 'next/font/google'
 import Image from 'next/image'
-import { motion, useMotionValue, useTransform, MotionValue } from "framer-motion";
-const monaSans = Mona_Sans({
-    subsets: ["latin"],
-    weight: "700",
-});
+import { motion } from "framer-motion";
+
 
 export default function TailwindDarkmode() {
     const containerRef = useRef<HTMLDivElement>(null)
