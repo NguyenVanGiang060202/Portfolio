@@ -1,9 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Mona_Sans } from 'next/font/google'
 import { motion, MotionValue, useTransform } from 'framer-motion'
-import { Pagination, PaginationContent, PaginationItem} from '@/components/ui/pagination';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 const monaSans = Mona_Sans({
     subsets: ["latin"],
@@ -11,19 +8,23 @@ const monaSans = Mona_Sans({
 });
 
 export default function NextjsSkill({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
-    const y = useTransform(scrollYProgress, [0.15, 0.35], ["0", "200%"]);
-    const yInverse = useTransform(scrollYProgress, [0.15, 0.30, 0.45], ["500%", "120%", "300%"])
-    const colorList = ['#0f172b', '#82181a', '#365314', '#164e63', '#4c1d95']
-    const [value, setValue] = useState(0)
+    const scale = useTransform(scrollYProgress, [0.25, 0.5], [1, 0.85])
+    const y = useTransform(scrollYProgress, [0.15, 0.4], ["0%", "-140%"])
+
+    // const x = useTransform(scrollYProgress, [0.1, 0.25], ["0%", "-100%"]);
+    // const y = useTransform(scrollYProgress, [0.15, 0.35], ["0", "200%"]);
+    // const yInverse = useTransform(scrollYProgress, [0.15, 0.30, 0.45], ["500%", "120%", "300%"])
+    // const colorList = ['#0f172b', '#82181a', '#365314', '#164e63', '#4c1d95']
+    // const [value, setValue] = useState(0)
     return (
-        <div className="w-dvw h-dvh justify-center items-center flex bg-slate-50 relative"> {/*bg-[linear-gradient(90deg,_#f8fafc_20%,_#432dd7_70%)]*/}
-            <h1 className={cn(`text-8xl font-bold ${monaSans.className}`, `text-[${colorList[value]}]`)}>NextJS</h1>
-            <motion.div style={{ y: yInverse }} className="absolute mx-auto w-full max-w-sm rounded-md p-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <Pagination>
+        <motion.div style={{ scale, y }} className="relative w-screen h-[calc(100vh-4rem)] justify-center items-center flex bg-slate-50 rounded-[4rem] overflow-hidden z-10 scale-90 origin-top my-10 shadow-2xl"> {/*bg-[linear-gradient(90deg,_#f8fafc_20%,_#432dd7_70%)]*/}
+            <h1 className={cn(`text-8xl font-bold ${monaSans.className}`, `text-slate-900`)}>NextJS</h1>
+            <motion.div  className="absolute mx-auto w-full max-w-sm rounded-md p-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                {/* <Pagination>
                     <PaginationContent>
                         <PaginationItem>
                             <Button onClick={() => setValue(value - 1)} variant={"ghost"}>
-                                <ArrowLeft/>
+                                <ArrowLeft />
                                 Previous
                             </Button>
                         </PaginationItem>
@@ -45,13 +46,13 @@ export default function NextjsSkill({ scrollYProgress }: { scrollYProgress: Moti
                         <PaginationItem>
                             <Button onClick={() => setValue(value + 1)} variant={"ghost"}>
                                 Next
-                                <ArrowRight/>
+                                <ArrowRight />
                             </Button>
                         </PaginationItem>
                     </PaginationContent>
-                </Pagination>
+                </Pagination> */}
             </motion.div>
-            <motion.div style={{ y }} className="absolute mx-auto w-full max-w-sm rounded-md border p-4 -top-20 left-20">
+            <motion.div className="absolute mx-auto w-full max-w-sm rounded-md border p-4 -top-20 left-20">
                 <div className="flex animate-pulse space-x-4">
                     <div className="size-10 rounded-full bg-gray-400"></div>
                     <div className="flex-1 space-y-6 py-1">
@@ -66,6 +67,6 @@ export default function NextjsSkill({ scrollYProgress }: { scrollYProgress: Moti
                     </div>
                 </div>
             </motion.div>
-        </div>
+        </motion.div>
     )
 }

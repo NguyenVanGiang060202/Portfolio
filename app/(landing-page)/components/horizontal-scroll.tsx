@@ -1,6 +1,6 @@
 "use client"
 import React, { useRef } from 'react'
-import { motion, useScroll, useTransform } from "framer-motion";
+import {useScroll } from "framer-motion";
 import TailwindDarkmode from './tailwind-skill'
 import NextjsSkill from './nextjs-skill'
 import AnimationSkill from './animation-skill'
@@ -12,17 +12,15 @@ export default function HorizontalScroll() {
         target: targetRef,
     });
 
-    const x = useTransform(scrollYProgress, [0, 1], ["0", "-75%"]);
-
     return (
-        <div ref={targetRef} className='relative w-screen h-[400vh]  bg-green-100'>
-            <div className="w-[100vw] h-[100vh] bg-red-100 sticky top-0  flex justify-start items-start overflow-hidden">
-                <motion.div style={{ x }} className="flex">
-                    <TailwindDarkmode/>
-                    <NextjsSkill scrollYProgress={scrollYProgress}/>
-                    <AnimationSkill scrollYProgress={scrollYProgress}/>
-                    <ThreeDAnimationSkill/>
-                </motion.div>
+        <div ref={targetRef} className='relative w-screen h-[500vh] bg-red-50'>
+            <div className="w-[100vw] h-[120vh] bg-orange-50 flex flex-col sticky top-0 justify-start items-start overflow-hidden">
+                <div className="flex flex-col gap-[20vh] justify-start items-start">
+                    <TailwindDarkmode scrollYProgress={scrollYProgress} />
+                    <NextjsSkill scrollYProgress={scrollYProgress} />
+                    <AnimationSkill scrollYProgress={scrollYProgress} />
+                    <ThreeDAnimationSkill scrollYProgress={scrollYProgress} />
+                </div>
             </div>
         </div>
     )
