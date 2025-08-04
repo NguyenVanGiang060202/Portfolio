@@ -6,6 +6,7 @@ import Link from 'next/link';
 import ParallaxTextComponent from './components/parallax-text';
 import HorizontalScroll from './components/horizontal-scroll';
 import Spline3DAnimation from './components/spline-3d-animation';
+import ListProjects from './components/list-project';
 
 const monaSans = Mona_Sans({
     subsets: ["latin"],
@@ -17,7 +18,7 @@ export default function page() {
         <div className='w-full h-full max-w-screen min-h-dvh flex justify-center items-center bg-slate-50 flex-col select-none'>
             <div id="about" className="w-full h-full max-w-screen min-h-dvh flex justify-center items-center bg-slate-50">
                 <div className="relative w-[50vw] h-screen justify-center items-center flex bg-orange-50 p-30 text-balance flex-col ">
-                    <h1 className={`text-8xl font-bold ${monaSans.className}`}>Hello, I&apos;m a software engineer</h1>
+                    <h1 className={`text-8xl font-bold ${monaSans.className}`}>Hello, I&apos;m a Front-end Developer</h1>
                     <Link href="#skills" className='absolute bottom-10'>
                         <Button className={` animate-bounce text-xl font-bold flex items-center gap-2 rounded-full p-2 px-4 bg-indigo-700 text-orange-50 ${monaSans.className}`}>
                             <ArrowBigDownDashIcon />
@@ -25,8 +26,8 @@ export default function page() {
                         </Button>
                     </Link>
                 </div>
-                <div className='relative w-[50vw] h-screen flex justify-center items-center'>
-                    <div className="relative w-full h-full flex justify-center items-center object-contain">
+                <div className='relative w-[50vw] h-screen flex justify-center items-center overflow-hidden bg-orange-50'>
+                    <div className="relative w-full h-full flex justify-center items-center object-cover">
                         <Spline3DAnimation/>
                     </div>
                 </div>
@@ -41,10 +42,8 @@ export default function page() {
                 </div>
             </div>
             {/* Mask */}
-            <div id="projects" className="w-full h-[400vh] max-w-screen min-h-dvh flex justify-start items-start bg-orange-50">
-                <div className="w-screen h-screen max-w-screen min-h-dvh flex justify-center items-center bg-orange-50">
-                    <h1 className={`text-[20rem] font-bold bg-indigo-700 w-full text-orange-50 text-center ${monaSans.className}`}>Projects</h1>
-                </div>
+            <div id="projects" className="w-full h-full max-w-screen min-h-dvh flex flex-col justify-start items-start bg-slate-50">
+                <ListProjects text="Projects"/>
             </div>
         </div>
     )
