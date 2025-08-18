@@ -1,6 +1,6 @@
 import React from 'react'
 import { Mona_Sans } from 'next/font/google'
-import { ArrowBigDownDashIcon } from 'lucide-react';
+import { ArrowBigDownDashIcon, MailIcon, PhoneIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import ParallaxTextComponent from './components/parallax-text';
@@ -33,8 +33,8 @@ export default function page() {
                 </div>
             </div>
 
-            <div id="skills" className="w-full h-full max-w-screen min-h-dvh flex flex-col justify-start items-start bg-slate-50">
-                <div className={`text-8xl font-bold bg-indigo-700 w-full text-orange-50 ${monaSans.className}`}>
+            <div id="skills" className="w-full h-full max-w-screen min-h-dvh flex flex-col justify-start items-start bg-slate-50 ">
+                <div className={`text-8xl font-bold bg-indigo-700 w-full text-orange-50 overflow-hidden ${monaSans.className}`}>
                     <ParallaxTextComponent />
                 </div>
                 <div className="w-full h-full max-w-screen min-h-dvh flex justify-center items-center bg-slate-50">
@@ -42,8 +42,19 @@ export default function page() {
                 </div>
             </div>
             {/* Mask */}
-            <div id="projects" className="w-full h-full max-w-screen min-h-dvh flex flex-col justify-start items-start bg-slate-50">
-                <ListProjects text="Projects"/>
+            {/*Sửa lại phần giới thiệu project = hiệu ứng hover -> chữ nhảy lên trên và xuống dưới*/}
+            {/*Code thêm phần cursor cho toàn bộ page*/}
+            <div id="projects" className="w-full h-full max-w-screen min-h-dvh flex flex-col justify-start items-start bg-slate-50 overflow-hidden">
+                <ListProjects/>
+            </div>
+            <div id="contact" className="w-full h-full max-w-screen min-h-dvh flex flex-col justify-start items-start bg-slate-900 overflow-hidden gap-4">
+                <h2 className="text-8xl font-bold text-slate-50 overflow-hidden px-18">Contact</h2>
+                <h3 className="text-2xl font-bold text-slate-50 overflow-hidden px-18 flex justify-center items-center gap-4">
+                    <MailIcon className="size-8"/> Nguyenvangiang060202@gmail.com
+                </h3>
+                <h3 className="text-2xl font-bold text-slate-50 overflow-hidden px-18 flex justify-center items-center gap-4">
+                    <PhoneIcon className="size-8"/> Phone: 0393508079
+                </h3>
             </div>
         </div>
     )
