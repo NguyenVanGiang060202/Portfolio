@@ -14,7 +14,6 @@ const monaSans = Mona_Sans({
 export default function NavBar() {
 	const [isHover, setIsHover] = useState(false)
 	const [isDarkMode, setIsDarkMode] = useState(true)
-	const [isVisible, setIsVisible] = useState(true)
 	return (
 		<>
 			<motion.header className="absolute px-8 top-20 left-20 z-10 size-fit flex justify-center items-center gap-8" onHoverEnd={() => setIsHover(false)}>

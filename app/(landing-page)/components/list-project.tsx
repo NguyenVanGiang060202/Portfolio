@@ -1,8 +1,8 @@
 "use client"
 import React, { useRef, useState } from 'react'
 import { Mona_Sans } from 'next/font/google'
-import { color, motion, useAnimation, useScroll, useTransform, useCycle, useMotionValue, useSpring } from 'framer-motion'
-import { ArrowUpRight, Rotate3D } from 'lucide-react';
+import { motion, useAnimation, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
+import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 const monaSans = Mona_Sans({
@@ -35,7 +35,6 @@ const projects = [
 export default function ListProjects() {
     const text = "Projects"
     const MotionImage = motion.create(Image)
-    const MotionLink = motion.create(Link)
     const controls = useAnimation()
     const targetRef = useRef(null);
     const projectRef = useRef(null);
@@ -120,7 +119,7 @@ export default function ListProjects() {
                         />
                     )}
                 </motion.div>
-                {projects.map((project, index) => (
+                {projects.map((project) => (
                     <Link key={project.id} href={project.link}
                         onMouseEnter={() => setActiveImage(project.id)}
                         onMouseLeave={() => setActiveImage(null)}
@@ -143,47 +142,3 @@ export default function ListProjects() {
     )
 }
 
-
-function ProjectImage() {
-    const MotionImage = motion.create(Image)
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const springConfig = { damping: 20, stiffness: 300 };
-    const cursorXSpring = useSpring(mouseX, springConfig);
-    const cursorYSpring = useSpring(mouseY, springConfig);
-
-    const [isHovered, setIsHovered] = useState(false);
-
-    const handleMouseMove = (e: any) => {
-        mouseX.set(e.clientX - 20); // Adjust for cursor image center
-        mouseY.set(e.clientY - 20); // Adjust for cursor image center
-    };
-    const cursorVariants = {
-        default: { scale: 0, opacity: 0 },
-        hovered: { scale: 1.5, opacity: 1 },
-    };
-    return (
-        <motion.div className='size-96 bg-green-50 relative'>
-            <MotionImage src="/image_holder.jpg" alt="Image" fill className="object-cover" />
-            <motion.div
-                className="custom-cursor"
-                variants={cursorVariants}
-                animate={isHovered ? 'hovered' : 'default'}
-                style={{
-                    translateX: cursorXSpring,
-                    translateY: cursorYSpring,
-                    position: 'fixed',
-                    top: 50,
-                    left: 50,
-                    width: 40,
-                    height: 40,
-                    borderRadius: '10%',
-                    pointerEvents: 'none', // Important to allow interaction with elements below
-                    zIndex: 30,
-                    backgroundSize: 'cover',
-                }}
-            />
-        </motion.div>
-    )
-}
