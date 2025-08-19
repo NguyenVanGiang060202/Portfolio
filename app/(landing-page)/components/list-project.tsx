@@ -83,7 +83,7 @@ export default function ListProjects() {
                 ))}
             </motion.div> */}
             <div
-                className={`w-full xl:text-[8rem] text-[4rem] max-w-screen min-w-screen mt-10 flex justify-start items-center text-slate-900 bg-slate-50 font-bold ${monaSans.className}`}>
+                className={`w-full xl:text-[8rem] text-[4rem] overflow-hidden max-w-screen min-w-screen mt-10 flex justify-start items-center text-slate-900 bg-slate-50 font-bold ${monaSans.className}`}>
                 <motion.div style={{ x }} className="">{'PROJECTS'}</motion.div>
             </div>
             <div ref={projectRef} onMouseMove={(event) => handleMouseMove(event)} className={`w-full  max-w-screen  flex flex-col justify-center items-center bg-slate-900 cursor-pointer text-5xl gap-4 font-bold ${monaSans.className}`}>
@@ -127,11 +127,11 @@ export default function ListProjects() {
                         onMouseLeave={() => setActiveImage(null)}
                         className="px-28 w-full h-[6rem] flex flex-col justify-start items-center cursor-pointer text-center perspective-[800px]">
                         <motion.div whileHover={{ rotateX: 90, transition: { duration: 0.3, ease: 'easeOut' } }} className="relative w-screen h-full [transform-style:preserve-3d] origin-center">
-                            <motion.div className={`absolute border-white border-b-2 w-full h-full px-0 xl:px-28 flex justify-between items-center [backface-visibility:hidden] transform rotate-x-0 translate-z-[3rem] text-slate-50 text-xl xl:text-[3rem] ${monaSans.className}`}>
+                            <motion.div className={`absolute border-white border-b-2 w-full h-full px-0 xl:px-28 flex justify-center items-center [backface-visibility:hidden] transform rotate-x-0 translate-z-[3rem] text-slate-50 text-xl xl:text-[3rem] ${monaSans.className}`}>
                                 <div className="">{project.name}</div>
                                 <ArrowUpRight size="3rem" />
                             </motion.div>
-                            <motion.div className={`absolute bg-slate-50 px-0 xl:px-28 w-full h-full flex justify-between items-center [backface-visibility:hidden] transform -rotate-x-90 -translate-z-[3rem] origin-bottom text-slate-900 text-xl xl:text-[3rem] ${monaSans.className}`}>
+                            <motion.div className={`absolute bg-slate-50 px-0 xl:px-28 w-full h-full flex justify-center items-center [backface-visibility:hidden] transform -rotate-x-90 -translate-z-[3rem] origin-bottom text-slate-900 text-xl xl:text-[3rem] ${monaSans.className}`}>
                                 <div className="">{project.name}</div>
                                 <ArrowUpRight size="3rem" />
                             </motion.div>

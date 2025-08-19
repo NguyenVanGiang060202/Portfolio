@@ -12,24 +12,24 @@ const monaSans = Mona_Sans({
 });
 
 export default function NavBar() {
-	const [isHover, setIsHover] = useState(false)
+	const [isOpen, setIsOpen] = useState(false)
 	const [isDarkMode, setIsDarkMode] = useState(true)
 	return (
 		<>
-			<motion.header className="absolute px-8 top-20 left-20 z-10 size-fit flex justify-center items-center gap-8" onHoverEnd={() => setIsHover(false)}>
-				<motion.div className='rounded-full size-full' whileTap={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }} whileHover={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }} onHoverStart={() => setIsHover(true)} >
+			<motion.header className="absolute top-10 left-10 xl:px-8 xl:top-20 xl:left-20 z-10 size-fit flex md:flex-row flex-col justify-start md:justify-center items-start md:items-center gap-8">
+				<motion.div className='rounded-full size-fit' whileTap={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }} whileHover={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }} onClick={() => setIsOpen(!isOpen)}>
 					<Menu className='size-10' />
 				</motion.div>
 				<motion.div
-					className="w-fit h-fit flex gap-4 text-lg z-10 hover:cursor-pointer"
+					className="w-fit h-fit flex md:flex-row flex-col gap-4 text-lg z-10 hover:cursor-pointer"
 					initial={{ visibility: 'hidden', opacity: 0, x: -20 }}
-					animate={{ visibility: isHover ? 'visible' : 'hidden', opacity: isHover ? 1 : 0, x: isHover ? 0 : -20 }}
+					animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}
 					transition={{ duration: 0.2, delay: 0.2, ease: 'easeInOut' }}
 
 				>
 					<motion.div
 						initial={{ visibility: 'hidden', opacity: 0, y: -10 }}
-						animate={{ visibility: isHover ? 'visible' : 'hidden', opacity: isHover ? 1 : 0, y: isHover ? 0 : -10 }}
+						animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
 						transition={{ duration: 0.3, delay: 0.2 }}
 						className='hover:cursor-pointer'
 					>
@@ -38,7 +38,7 @@ export default function NavBar() {
 
 					<motion.div
 						initial={{ visibility: 'hidden', opacity: 0, y: -10 }}
-						animate={{ visibility: isHover ? 'visible' : 'hidden', opacity: isHover ? 1 : 0, y: isHover ? 0 : -10 }}
+						animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
 						transition={{ duration: 0.3, delay: 0.4 }}
 						className='hover:cursor-pointer'
 					>
@@ -47,7 +47,7 @@ export default function NavBar() {
 
 					<motion.div
 						initial={{ visibility: 'hidden', opacity: 0, y: -10 }}
-						animate={{ visibility: isHover ? 'visible' : 'hidden', opacity: isHover ? 1 : 0, y: isHover ? 0 : -10 }}
+						animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
 						transition={{ duration: 0.3, delay: 0.6 }}
 						className='hover:cursor-pointer'
 					>
@@ -58,7 +58,7 @@ export default function NavBar() {
 							<motion.div
 								key="moon"
 								initial={{ visibility: 'hidden', opacity: 0, y: -10 }}
-								animate={{ visibility: isHover ? 'visible' : 'hidden', opacity: isHover ? 1 : 0, y: isHover ? 0 : -10 }}
+								animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
 								transition={{ duration: 0.3, delay: 0.6 }}
 								onClick={() => setIsDarkMode(!isDarkMode)}
 								whileTap={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }}
@@ -73,7 +73,7 @@ export default function NavBar() {
 						) : <motion.div
 							key="sun"
 							initial={{ visibility: 'hidden', opacity: 0, y: -10 }}
-							animate={{ visibility: isHover ? 'visible' : 'hidden', opacity: isHover ? 1 : 0, y: isHover ? 0 : -10 }}
+							animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
 							transition={{ duration: 0.3, delay: 0.6 }}
 							onClick={() => setIsDarkMode(!isDarkMode)}
 							whileTap={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }}
@@ -88,7 +88,6 @@ export default function NavBar() {
 					</AnimatePresence>
 				</motion.div>
 			</motion.header>
-
 		</>
 	)
 }

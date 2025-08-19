@@ -8,7 +8,7 @@ export default function layout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className='flex min-h-screen w-full h-full max-w-screen mx-auto'>
+        <div className='flex min-h-screen w-full h-full max-w-screen'>
             <NavBar/>
             {children}
         </div>

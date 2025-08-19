@@ -15,8 +15,8 @@ const monaSans = Mona_Sans({
 
 export default function page() {
     return (
-        <div className='w-full h-full max-w-screen min-h-screen flex justify-center items-center bg-slate-50 flex-col select-none'>
-            <div id="about" className="w-full h-full max-w-screen min-h-dvh flex xl:flex-row flex-col justify-center items-center bg-slate-50">
+        <div className='w-screen h-full max-w-screen min-h-screen flex justify-center items-center bg-slate-50 flex-col select-none'>
+            <div id="about" className="w-full h-full max-w-screen min-h-screen flex xl:flex-row flex-col justify-center items-center bg-slate-50">
                 <div className="relative xl:w-[50vw] w-full h-screen justify-center items-center flex bg-orange-50 p-0 xl:p-30 text-balance flex-col ">
                     <h1 className={`text-6xl xl:text-8xl font-bold text-center ${monaSans.className}`}>Hello, I&apos;m a Front-end Developer</h1>
                     <Link href="#skills" className='absolute bottom-10'>
@@ -42,6 +42,8 @@ export default function page() {
             {/* Mask */}
             {/*Sửa lại phần giới thiệu project = hiệu ứng hover -> chữ nhảy lên trên và xuống dưới*/}
             {/*Code thêm phần cursor cho toàn bộ page*/}
+
+            
             <div id="projects" className="w-full h-full max-w-screen min-h-dvh flex flex-col justify-start items-start bg-slate-900 overflow-hidden">
                 <ListProjects />
             </div>
