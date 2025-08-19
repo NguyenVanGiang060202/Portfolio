@@ -15,12 +15,12 @@ export default function AnimationSkill({ scrollYProgress }: { scrollYProgress: M
 
     const yOpen = useTransform(scrollYProgress, [0.55, 0.8], ["0%", "100%"]);
     return (
-        <motion.div style={{ scale, y }} className='relative w-screen h-[calc(100vh-4rem)] justify-center items-center flex bg-indigo-700 rounded-[4rem] overflow-hidden z-20 scale-90 origin-top my-10 shadow-2xl'>
+        <motion.div style={{ scale, y }} className='xl:text-[10rem] text-[4rem] relative w-screen aspect-square xl:aspect-auto xl:h-[calc(100vh-4rem)] justify-center items-center flex bg-indigo-700 rounded-[4rem] overflow-hidden z-20 scale-90 origin-top my-10 shadow-2xl'>
             <motion.div style={{ translateY: useTransform(yOpen, (v) => `calc(-1 * ${v})`) }} className="absolute w-dvw h-dvh bg-slate-50 z-10 [clip-path:polygon(0_0,_100%_0,_100%_100%,_100%_100%)]">
-                <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[10rem] font-bold text-slate-900 ${monaSans.className}`}>Animation</div>
+                <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 xl:text-[10rem] text-[4rem] font-bold text-slate-900 ${monaSans.className}`}>Animation</div>
             </motion.div>
             <motion.div style={{ y: yOpen }} className="absolute w-dvw h-dvh bg-slate-50 z-10 [clip-path:polygon(0_0,_0_0,_100%_100%,_0_100%)]">
-                <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[10rem] font-bold text-slate-900 ${monaSans.className}`}>Animation</div>
+                <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 xl:text-[10rem] text-[4rem] font-bold text-slate-900 ${monaSans.className}`}>Animation</div>
             </motion.div>
 
             <AnimationText />
@@ -86,7 +86,7 @@ function AnimationText() {
                         },
                     },
                 }}
-                className={`text-[10rem] font-bold text-center ${monaSans.className} cursor-grab text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-white bg-[length:200%_200%] bg-left`}
+                className={`xl:text-[10rem] text-[4rem] font-bold text-center ${monaSans.className} cursor-grab text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-white bg-[length:200%_200%] bg-left`}
                 style={{ x, y }}
             >
                 Animation

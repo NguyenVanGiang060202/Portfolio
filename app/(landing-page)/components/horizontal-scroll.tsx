@@ -13,10 +13,10 @@ export default function HorizontalScroll() {
     });
 
     return (
-        <div ref={targetRef} className='relative w-screen h-[500vh] bg-orange-50'>
-            <div className="w-[100vw] h-[120vh] bg-orange-50 flex flex-col sticky top-0 justify-start items-start overflow-hidden">
-                <div className="flex flex-col gap-[20vh] justify-start items-start">
-                    <TailwindDarkmode scrollYProgress={scrollYProgress} />
+        <div ref={targetRef} className='relative max-w-screen w-full h-[200vh] xl:h-[500vh] bg-orange-50'>
+            <div className="max-w-screen w-full h-[120vh] bg-orange-50 flex flex-col sticky top-0 left-0 justify-start items-start overflow-hidden">
+                <div className="flex flex-col gap-[25vh] md:gap-[20vh] justify-start items-start mt-32 md:mt-0 ">
+                <TailwindDarkmode scrollYProgress={scrollYProgress} />
                     <NextjsSkill scrollYProgress={scrollYProgress} />
                     <AnimationSkill scrollYProgress={scrollYProgress} />
                     <ThreeDAnimationSkill scrollYProgress={scrollYProgress} />

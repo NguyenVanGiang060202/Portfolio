@@ -1,7 +1,7 @@
 "use client"
 import React, { useRef, useState } from 'react'
 import { Mona_Sans } from 'next/font/google'
-import { motion, useAnimation, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -33,17 +33,15 @@ const projects = [
 ]
 
 export default function ListProjects() {
-    const text = "Projects"
     const MotionImage = motion.create(Image)
-    const controls = useAnimation()
     const targetRef = useRef(null);
     const projectRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: targetRef,
+        offset: ["-100% start", "end start"]
     });
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 2])
-    const scaleY = useTransform(scrollYProgress, [0, 0.25], [1, -1])
 
+    const x = useTransform(scrollYProgress, [0, 0.35], ["0%", "150%"],)
 
     //-------------------------------------
     const mouseX = useMotionValue(0);
@@ -67,8 +65,8 @@ export default function ListProjects() {
 
 
     return (
-        <div ref={targetRef} className="w-full h-[300vh] max-w-screen min-h-dvh flex flex-col justify-start items-start bg-gradient-to-b from-orange-50 to-15% to-slate-900">
-            <motion.div style={{ scale, scaleY }} animate={controls} transition={{ duration: 1, ease: 'easeOut' }} className="w-[calc(100vw-12rem)] m-24 h-screen max-w-screen min-h-dvh  flex justify-center items-center bg-slate-900 rounded-[4rem] cursor-pointer">
+        <div ref={targetRef} className="w-full h-full max-w-screen flex flex-col justify-start items-start bg-slate-900 gap-40"> {/*bg-gradient-to-b from-orange-50 to-15% to-slate-900*/}
+            {/* <motion.div style={{ scale, scaleY }} animate={controls} transition={{ duration: 1, ease: 'easeOut' }} className="w-[calc(100vw-12rem)] m-24 h-screen max-w-screen min-h-dvh  flex justify-center items-center bg-slate-900 rounded-[4rem] cursor-pointer">
                 {text.split("").map((char, index) => (
                     <div key={index} className='relative flex flex-col items-center justify-center'>
                         <motion.h1 onHoverStart={() => controls.start({ backgroundColor: "#4338ca" })} onHoverEnd={() => controls.start({ backgroundColor: "#0f172a" })} whileHover={{ scale: 1.2, backgroundSize: '100% 100%', color: 'transparent', transition: { duration: 1, ease: 'easeOut' } }} initial={{ backgroundSize: '100% 0%', backgroundColor: "#ffffff" }}
@@ -83,8 +81,12 @@ export default function ListProjects() {
                         </motion.h1>
                     </div>
                 ))}
-            </motion.div>
-            <div ref={projectRef} onMouseMove={(event) => handleMouseMove(event)} className={`w-full h-screen max-w-screen min-h-dvh mt-[20%] flex flex-col justify-center items-center bg-slate-900 cursor-pointer text-5xl gap-4 font-bold ${monaSans.className}`}>
+            </motion.div> */}
+            <div
+                className={`w-full xl:text-[8rem] text-[4rem] max-w-screen min-w-screen mt-10 flex justify-start items-center text-slate-900 bg-slate-50 font-bold ${monaSans.className}`}>
+                <motion.div style={{ x }} className="">{'PROJECTS'}</motion.div>
+            </div>
+            <div ref={projectRef} onMouseMove={(event) => handleMouseMove(event)} className={`w-full  max-w-screen  flex flex-col justify-center items-center bg-slate-900 cursor-pointer text-5xl gap-4 font-bold ${monaSans.className}`}>
                 <motion.div className="absolute w-[30%] bg-green-50 aspect-video"
                     variants={cursorVariants}
                     animate={activeImage !== null ? 'hovered' : 'default'}
@@ -125,11 +127,11 @@ export default function ListProjects() {
                         onMouseLeave={() => setActiveImage(null)}
                         className="px-28 w-full h-[6rem] flex flex-col justify-start items-center cursor-pointer text-center perspective-[800px]">
                         <motion.div whileHover={{ rotateX: 90, transition: { duration: 0.3, ease: 'easeOut' } }} className="relative w-screen h-full [transform-style:preserve-3d] origin-center">
-                            <motion.div className={`absolute border-white border-b-2 w-full h-full px-28 flex justify-between items-center [backface-visibility:hidden] transform rotate-x-0 translate-z-[3rem] text-slate-50 text-[3rem] ${monaSans.className}`}>
+                            <motion.div className={`absolute border-white border-b-2 w-full h-full px-0 xl:px-28 flex justify-between items-center [backface-visibility:hidden] transform rotate-x-0 translate-z-[3rem] text-slate-50 text-xl xl:text-[3rem] ${monaSans.className}`}>
                                 <div className="">{project.name}</div>
                                 <ArrowUpRight size="3rem" />
                             </motion.div>
-                            <motion.div className={`absolute bg-slate-50 px-28 w-full h-full flex justify-between items-center [backface-visibility:hidden] transform -rotate-x-90 -translate-z-[3rem] origin-bottom text-slate-900 text-[3rem] ${monaSans.className}`}>
+                            <motion.div className={`absolute bg-slate-50 px-0 xl:px-28 w-full h-full flex justify-between items-center [backface-visibility:hidden] transform -rotate-x-90 -translate-z-[3rem] origin-bottom text-slate-900 text-xl xl:text-[3rem] ${monaSans.className}`}>
                                 <div className="">{project.name}</div>
                                 <ArrowUpRight size="3rem" />
                             </motion.div>

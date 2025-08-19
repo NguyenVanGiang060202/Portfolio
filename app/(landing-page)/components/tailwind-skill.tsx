@@ -32,10 +32,11 @@ export default function TailwindDarkmode({ scrollYProgress }: { scrollYProgress:
     }, [])
 
     return (
-        <motion.div ref={containerRef} style={{ scale }} className="relative w-screen h-[calc(100vh-4rem)] justify-center items-center flex bg-slate-50 scale-90 rounded-[4rem] overflow-hidden origin-top my-10 shadow-2xl">
-            <Image src="/tailwind-dark_2x.png" alt="Logo" fill sizes='auto' className='object-cover absolute top-0 left-0 w-screen h-screen' quality={100} priority />
-            <motion.div style={{ clipPath: `polygon(${relativePos.x}px 0, 100% 0, 100% 100%, ${relativePos.x}px 100%)` }} className="absolute top-0 left-0 w-screen h-[calc(100vh-4rem)] bg-slate-50">
-                <Image src="/tailwind-light_2x.png" alt="Logo" fill sizes='auto' className='object-cover absolute top-0 left-0 w-screen h-screen' quality={100} priority />
+
+        <motion.div ref={containerRef} style={{ scale }} className="relative w-screen aspect-square xl:aspect-auto xl:h-[calc(100vh-4rem)] justify-center items-center flex bg-slate-50 scale-90 rounded-[4rem] overflow-hidden origin-top my-10 shadow-2xl">
+            <Image src="/tailwind-dark_2x.png" alt="Logo" fill sizes='auto' className='object-cover absolute top-0 left-0 w-screen aspect-square xl:aspect-auto xl:h-[calc(100vh-4rem)]' quality={100} priority />
+            <motion.div style={{ clipPath: `polygon(${relativePos.x}px 0, 100% 0, 100% 100%, ${relativePos.x}px 100%)` }} className="absolute top-0 left-0 w-screen aspect-square xl:aspect-auto xl:h-[calc(100vh-4rem)] bg-slate-50">
+                <Image src="/tailwind-light_2x.png" alt="Logo" fill sizes='auto' className='object-cover absolute top-0 left-0 w-screen aspect-square xl:aspect-auto xl:h-[calc(100vh-4rem)]' quality={100} priority />
             </motion.div>
 
             {/* <h1 className={`text-8xl font-bold z-10 text-orange-500 ${monaSans.className}`}>Tailwind CSS</h1> */}

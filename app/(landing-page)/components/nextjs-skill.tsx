@@ -17,7 +17,7 @@ export default function NextjsSkill({ scrollYProgress }: { scrollYProgress: Moti
     // const colorList = ['#0f172b', '#82181a', '#365314', '#164e63', '#4c1d95']
     // const [value, setValue] = useState(0)
     return (
-        <motion.div style={{ scale, y }} className="relative w-screen h-[calc(100vh-4rem)] justify-center items-center flex bg-slate-50 rounded-[4rem] overflow-hidden z-10 scale-90 origin-top my-10 shadow-2xl"> {/*bg-[linear-gradient(90deg,_#f8fafc_20%,_#432dd7_70%)]*/}
+        <motion.div style={{ scale, y }} className="relative w-screen aspect-square xl:aspect-auto xl:h-[calc(100vh-4rem)] justify-center items-center flex bg-slate-50 rounded-[4rem] overflow-hidden z-10 scale-90 origin-top shadow-2xl my-10"> {/*bg-[linear-gradient(90deg,_#f8fafc_20%,_#432dd7_70%)]*/}
             <h1 className={cn(`text-8xl font-bold ${monaSans.className}`, `text-slate-900`)}>NextJS</h1>
             <motion.div  className="absolute mx-auto w-full max-w-sm rounded-md p-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 {/* <Pagination>

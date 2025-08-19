@@ -120,10 +120,6 @@
     body {
         @apply bg-background text-foreground;
     }
-    body::-webkit-scrollbar {
-        display: none;
-    }
-
     html {
         scroll-behavior: smooth;
         scrollbar-width: none;
