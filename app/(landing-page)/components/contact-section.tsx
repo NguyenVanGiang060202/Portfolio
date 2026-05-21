@@ -6,7 +6,7 @@ import { useRef } from "react";
 import { Mail, Phone, Github, ArrowUpRight, Copy } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { Magnetic } from "@/components/motion/magnectic-button";
+import { Magnetic } from "@/components/motion/magnetic-button";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
 
