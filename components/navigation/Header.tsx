@@ -1,93 +1,114 @@
-"use client"
-import Link from 'next/link'
-import React from 'react'
-import { useState } from 'react'
-import { Mona_Sans } from 'next/font/google'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, Moon, Sun } from 'lucide-react'
+"use client";
 
-const monaSans = Mona_Sans({
-	subsets: ["latin"],
-	weight: "700",
-});
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import Link from "next/link";
+import { Magnetic } from "../motion/magnectic-button";
+import { useState } from "react";
 
-export default function NavBar() {
-	const [isOpen, setIsOpen] = useState(false)
-	const [isDarkMode, setIsDarkMode] = useState(true)
-	return (
-		<>
-			<motion.header className="absolute top-10 left-10 xl:px-8 xl:top-20 xl:left-20 z-10 size-fit flex md:flex-row flex-col justify-start md:justify-center items-start md:items-center gap-8">
-				<motion.div className='rounded-full size-fit' whileTap={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }} whileHover={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }} onClick={() => setIsOpen(!isOpen)}>
-					<Menu className='size-10' />
-				</motion.div>
-				<motion.div
-					className="w-fit h-fit flex md:flex-row flex-col gap-4 text-lg z-10 hover:cursor-pointer"
-					initial={{ visibility: 'hidden', opacity: 0, x: -20 }}
-					animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}
-					transition={{ duration: 0.2, delay: 0.2, ease: 'easeInOut' }}
 
-				>
-					<motion.div
-						initial={{ visibility: 'hidden', opacity: 0, y: -10 }}
-						animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
-						transition={{ duration: 0.3, delay: 0.2 }}
-						className='hover:cursor-pointer'
-					>
-						<Link href="#projects" className={monaSans.className}>Projects</Link>
-					</motion.div>
+const navLinks = [
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#projects" },
+    { label: "Contact", href: "#contact" },
+];
 
-					<motion.div
-						initial={{ visibility: 'hidden', opacity: 0, y: -10 }}
-						animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
-						transition={{ duration: 0.3, delay: 0.4 }}
-						className='hover:cursor-pointer'
-					>
-						<Link href="#skills" className={monaSans.className}>Skills</Link>
-					</motion.div>
+export default function Navigation() {
+    const [isOpen, setIsOpen] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
+    const { scrollY } = useScroll();
 
-					<motion.div
-						initial={{ visibility: 'hidden', opacity: 0, y: -10 }}
-						animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
-						transition={{ duration: 0.3, delay: 0.6 }}
-						className='hover:cursor-pointer'
-					>
-						<Link href="#contact" className={monaSans.className}>Contact</Link>
-					</motion.div>
-					<AnimatePresence mode='wait'>
-						{isDarkMode ? (
-							<motion.div
-								key="moon"
-								initial={{ visibility: 'hidden', opacity: 0, y: -10 }}
-								animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
-								transition={{ duration: 0.3, delay: 0.6 }}
-								onClick={() => setIsDarkMode(!isDarkMode)}
-								whileTap={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }}
-								whileHover={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }}
-								className='hover:cursor-pointer'
-								exit={{ visibility: 'hidden', opacity: 0, y: 10, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }}
-							>
-								<div className="w-6 h-6 flex items-center justify-center">
-									<Moon fill='' className='text-black' />
-								</div>
-							</motion.div>
-						) : <motion.div
-							key="sun"
-							initial={{ visibility: 'hidden', opacity: 0, y: -10 }}
-							animate={{ visibility: isOpen ? 'visible' : 'hidden', opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
-							transition={{ duration: 0.3, delay: 0.6 }}
-							onClick={() => setIsDarkMode(!isDarkMode)}
-							whileTap={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }}
-							whileHover={{ scale: 0.9, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }}
-							className='hover:cursor-pointer'
-							exit={{ visibility: 'hidden', opacity: 0, y: 10, cursor: "pointer", transition: { duration: 0.4, ease: "easeInOut" }, rotate: 360, transformOrigin: "center center" }}
-						>
-							<div className="w-6 h-6 flex items-center justify-center">
-								<Sun className="text-black w-full h-full" />
-							</div>
-						</motion.div>}
-					</AnimatePresence>
-				</motion.div>
-			</motion.header>
-		</>
-	)
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious() ?? 0;
+        if (latest > previous && latest > 150) {
+            setIsHidden(true);
+        } else {
+            setIsHidden(false);
+        }
+    });
+
+    return (
+        <>
+            <motion.header
+                animate={{ y: isHidden ? -100 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4"
+            >
+                <nav className="mx-auto max-w-7xl flex items-center justify-between glass rounded-2xl px-6 py-3">
+                    <Magnetic strength={0.2}>
+                        <Link href="/" className="text-lg font-bold tracking-tight font-[family-name:var(--font-mona-sans)]">
+                            GN<span className="text-[oklch(0.7_0.12_200)]">.</span>
+                        </Link>
+                    </Magnetic>
+
+                    <div className="hidden md:flex items-center gap-1">
+                        {navLinks.map((link) => (
+                            <Magnetic key={link.label} strength={0.15}>
+                                <Link
+                                    href={link.href}
+                                    className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 group"
+                                >
+                                    {link.label}
+                                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[oklch(0.7_0.12_200)] transition-all duration-300 group-hover:w-4 rounded-full" />
+                                </Link>
+                            </Magnetic>
+                        ))}
+                    </div>
+
+                    <Magnetic strength={0.2}>
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="md:hidden flex flex-col gap-1.5 w-8 h-8 items-center justify-center"
+                            aria-label="Toggle menu"
+                        >
+                            <motion.span
+                                animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                                className="w-6 h-[1.5px] bg-foreground block"
+                            />
+                            <motion.span
+                                animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+                                className="w-6 h-[1.5px] bg-foreground block"
+                            />
+                            <motion.span
+                                animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                                className="w-6 h-[1.5px] bg-foreground block"
+                            />
+                        </button>
+                    </Magnetic>
+                </nav>
+            </motion.header>
+
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl md:hidden"
+                    >
+                        <div className="flex flex-col items-center justify-center h-full gap-8">
+                            {navLinks.map((link, i) => (
+                                <motion.div
+                                    key={link.label}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 20 }}
+                                    transition={{ delay: i * 0.1, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                >
+                                    <Link
+                                        href={link.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-4xl font-bold font-[family-name:var(--font-mona-sans)] hover:text-[oklch(0.7_0.12_200)] transition-colors duration-300"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
+    );
 }

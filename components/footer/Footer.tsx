@@ -1,36 +1,82 @@
-import React from 'react'
-import { Github, MailIcon } from 'lucide-react'
-import { PhoneIcon } from 'lucide-react'
-import Link from 'next/link'
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { Github, Mail, Phone, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { useRef } from "react";
+import { Magnetic } from "../motion/magnectic-button";
+
+const socialLinks = [
+    {
+        label: "Email",
+        href: "mailto:Nguyenvangiang060202@gmail.com",
+        icon: Mail,
+        value: "Nguyenvangiang060202@gmail.com",
+    },
+    {
+        label: "Phone",
+        href: "tel:0393508079",
+        icon: Phone,
+        value: "0393508079",
+    },
+    {
+        label: "GitHub",
+        href: "https://github.com/NguyenVanGiang060202",
+        icon: Github,
+        value: "NguyenVanGiang060202",
+    },
+];
 
 export default function Footer() {
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref, { once: true, margin: "-10%" });
+
     return (
-        <div className='w-full h-full grid md:grid-cols-2 md:grid-rows-1 grid-rows-2 justify-between items-center border-y-2 p-10 md:p-20 bg-slate-50 gap-10'>
-            <p className="text-sm md:text-2xl font-bold text-slate-900 overflow-hidden  flex justify-center items-center gap-4">This site build with Next.js and
-                using Tailwind CSS, Radix UI to build components, Framer Motion, Lenis to add animation</p>
-            <div className="flex flex-col gap-4 h-full justify-center items-start">
-                <Link href="https://mail.google.com/mail/#compose"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm md:text-2xl font-bold text-slate-900  flex justify-center items-center gap-4 group relative">
-                    <MailIcon className="size-8" /> Nguyenvangiang060202@gmail.com
-                    <span
-                        className="absolute left-0 -bottom-2 h-[0.25rem] w-0 bg-black transition-all duration-300 group-hover:w-full"
-                    ></span>
-                </Link>
-                <Link href="tel:0393508079" className="text-sm md:text-2xl font-bold text-slate-900 flex justify-center items-center gap-4 group relative">
-                    <PhoneIcon className="size-8" />0393508079
-                    <span
-                        className="absolute left-0 -bottom-2 h-[0.25rem] w-0 bg-black transition-all duration-300 group-hover:w-full"
-                    ></span>
-                </Link>
-                <Link href="https://github.com/NguyenVanGiang060202" className="text-sm md:text-2xl font-bold text-slate-900 flex justify-center items-center gap-4 group relative">
-                    <Github className="size-8" /> https://github.com/NguyenVanGiang060202
-                    <span
-                        className="absolute left-0 -bottom-2 h-[0.25rem] w-0 bg-black transition-all duration-300 group-hover:w-full"
-                    ></span>
-                </Link>
+        <footer ref={ref} className="w-full border-t border-border">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+                <div className="grid md:grid-cols-2 gap-16 md:gap-24">
+                    <div>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                            className="text-sm text-muted-foreground leading-relaxed max-w-md"
+                        >
+                            Built with Next.js, Tailwind CSS, Framer Motion, and Lenis.
+                            Crafted with attention to detail and a passion for interactive web experiences.
+                        </motion.p>
+                    </div>
+
+                    <div className="flex flex-col gap-6">
+                        {socialLinks.map((link, i) => (
+                            <motion.div
+                                key={link.label}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                                transition={{
+                                    duration: 0.5,
+                                    delay: i * 0.1,
+                                    ease: [0.22, 1, 0.36, 1],
+                                }}
+                            >
+                                <Magnetic strength={0.1}>
+                                    <Link
+                                        href={link.href}
+                                        target={link.label === "GitHub" ? "_blank" : undefined}
+                                        rel={link.label === "GitHub" ? "noopener noreferrer" : undefined}
+                                        className="group flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+                                    >
+                                        <link.icon className="size-4" />
+                                        <span>{link.value}</span>
+                                        <ArrowUpRight className="size-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
+                                    </Link>
+                                </Magnetic>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+
             </div>
-        </div>
-    )
+        </footer>
+    );
 }
